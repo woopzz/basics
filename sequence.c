@@ -35,7 +35,7 @@ int sequence_set_at(Sequence* seq, size_t i, void* item) {
     return 1;
 }
 
-int _sequence_resize(Sequence* seq) {
+int _sequence_grow(Sequence* seq) {
     size_t new_size = seq->size == 0 ? 1 : seq->size * 2;
     void* items = realloc(seq->items, new_size * seq->itemsize);
     if (items == NULL) {
@@ -49,11 +49,27 @@ int _sequence_resize(Sequence* seq) {
     return 1;
 }
 
+int _sequence_shrink(Sequence* seq) {
+    size_t new_size = seq->size / 2;
+    if (new_size <= seq->length) {
+        return 2;
+    }
+
+    void* items = realloc(seq->items, new_size * seq->itemsize);
+    if (items == NULL) {
+        return 0;
+    }
+
+    seq->items = items;
+    seq->size = new_size;
+    return 1;
+}
+
 int sequence_insert_at(Sequence* seq, size_t i, void* item) {
     if (i > seq->length) {
         return 0;
     }
-    if (seq->length == seq->size && _sequence_resize(seq) == 0) {
+    if (seq->length == seq->size && _sequence_grow(seq) == 0) {
         return 0;
     }
     if (i < seq->length) {
@@ -73,7 +89,7 @@ int sequence_delete_at(Sequence* seq, size_t i) {
         memcpy(end, end + seq->itemsize, (seq->length-i) * seq->itemsize);
     }
     seq->length -= 1;
-    return 1;
+    return _sequence_shrink(seq) && 1;
 }
 
 int sequence_insert_first(Sequence* seq, void* item) {
