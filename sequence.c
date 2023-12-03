@@ -8,6 +8,11 @@ typedef struct {
     size_t size;
 } Sequence;
 
+typedef struct {
+    void* just;
+    char nothing;
+} MaybeSequenceItem;
+
 int sequence_init(Sequence* seq, size_t itemsize) {
     seq->items = NULL;
     seq->itemsize = itemsize;
@@ -20,11 +25,12 @@ int sequence_free(Sequence* seq) {
     free(seq->items);
 }
 
-void* sequence_get_at(Sequence* seq, size_t i) {
+MaybeSequenceItem sequence_get_at(Sequence* seq, size_t i) {
     if (i >= seq->length) {
-        return NULL;
+        return (MaybeSequenceItem) { .nothing = 1 };
     }
-    return seq->items + seq->itemsize * i;
+    void* item = seq->items + seq->itemsize * i;
+    return (MaybeSequenceItem) { .nothing = 0, .just = item };
 }
 
 int sequence_set_at(Sequence* seq, size_t i, void* item) {
