@@ -1,11 +1,14 @@
 # Basics
 
-Implementations in this repo are most definitely not the best ones. But they should be simple and good enough to understand the reason why these things are used.
+The modern programming languages, platforms, frameworks are amazing. And there are lots of things I use ever day, but don't really know how they work. In this repo I want to implement some basic data structures / algorithms / programming concepts / tricks to understand them better. What I cannot create, I do not understand.
 
-### Sequence (ADT)
+The implementations are most surely not perfect. I don't have a purpose to make them this way. I want to understand ideas that make a particular concept useful and I leave other details as simple as possible.
 
-All modern languages allow you to store items in a sequential structure and get them by index. And they're not force you to think about its size, reallocations and so on.
-There is a good explanation in [the MIT lecture](https://youtu.be/CHhwJjR0mZA?si=HczOKCTEwWgjlTbG). [My implementation in C](./sequence.c).
+### Dynamic array
+
+- [2. Data Structures and Dynamic Arrays. MIT 6.006 Introduction to Algorithms, Spring 2020](https://youtu.be/CHhwJjR0mZA?si=HczOKCTEwWgjlTbG)
+
+[My implementation in C.](./sequence.c) I call the structure "Sequence" as an implementation of the ADT Sequence from the MIT lecture.
 
 ### Hash table
 
@@ -18,4 +21,4 @@ There is a good explanation in [the MIT lecture](https://youtu.be/CHhwJjR0mZA?si
 
 ### Sorting
 
-* [Merge sort](./merge_sort.c) ([a MIT lecture](https://youtu.be/oS9aPzUNG-s?si=8tF4PDGuiyS0Uq-b))
+- [Merge sort](./merge_sort.c)
