@@ -19,6 +19,12 @@ The implementations are most surely not perfect. I don't have a purpose to make 
 
 [My implementation in C. Linear probing. Backward-shift deletion.](./hashtable.c)
 
+### Heap
+
+- [Abdul Bari's video on Youtube](https://youtu.be/HqPJF2L5h9U?si=WyCA6gmRTKTjLxZg) <<< this video is brilliant btw
+
+[My implementation in C.](./heap.c)
+
 ### Sorting
 
 - [Merge sort](./merge_sort.c)
