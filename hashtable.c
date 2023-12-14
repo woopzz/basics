@@ -88,8 +88,8 @@ bool hashtable_grow(HashTable* ht) {
 }
 
 bool hashtable_shrink(HashTable* ht) {
-    uint32_t new_capacity = ht->capacity == 0 ? HASHTABLE_INIT_CAPACITY : ht->capacity / 2;
-    return hashtable_resize(ht, new_capacity);
+    if (ht->capacity <= HASHTABLE_INIT_CAPACITY) return true;
+    return hashtable_resize(ht, ht->capacity / 2);
 }
 
 bool hashtable_set(HashTable* ht, const char* key, void* value) {
